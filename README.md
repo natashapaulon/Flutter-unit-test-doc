@@ -12,7 +12,7 @@ Exemplo:
 class MockAnalyticsLogger extends Mock implements AnalyticsLogger {}
 ```
 
-### Main
+### Função Main
 Agora vamos criar a função main para podermos instanciar os objetos e criar os testes.
 
 ```
@@ -75,6 +75,48 @@ Agora que estamos com as configurações iniciais feitas, podemos fazer o primei
 
 Iremos testar a função didPush presente dentro da classe analyticsRouteObserver, quando a nome da rota for nulo.
 
+#### Etapas dos Testes:
+- Arrange
+- Act
+- Assert
+
+#### Arrange
+A etapa do **Arrange** é onde configuramos o que é necessário para o teste rodar, como inicializar variáveis, etc.
+Dentro do Arrange também podemos utilizar a função when para fazermos o stub de uma classe, ou seja, definimos um comportamento previsível de retorno baseado nos parâmetros que passamos para o teste. 
+
+É bem parecido com mockar as dependências, só que de uma forma mais simples.
+
+#### Act
+Na etapa de **Act** é onde rodamos o nosso teste, chamando a função ou método que queremos testar.
+
+#### Assert
+Na etapa de **Assert** é onde verificamos se a funcao que executamos no Act teve o resultado esperado.
+Dentro do Assert podemos utilizar funções como expect, verify, verifyNoMoreInteractions.
+
+#### Expect
+A função expect é utilizado quando esperamos um resultado após a função ser executada na etapa de Act, mas também podemos colocar a função a ser executada diretamente nela, como no teste abaixo, onde temos o que é executado do lado esquerdo, e o resultado esperado no lado direito.
+Pode ser utilizada no objeto da classe que estamos testando e no objeto mockado.
+```
+expect(() => o que é executado, o resultado esperado);
+```
+
+#### Verify
+A função verify é utilizado quando queremos verificar se a função foi executada pelo menos 1 vez, por exemplo.
+Também podemos usar para verificar se após a função chamada na etapa de Act é chamada, se as funções do objeto mockado são chamadas corretamente.
+Só pode ser utilizada pelo objeto mockado.
+```
+// Para verificar se a funcao foi chamada 1 vez
+verify(() => objetoMockado.funcao()).called(1);
+```
+
+#### Verify No More Interactions
+A função verifyNoMoreInteractions é utilizado quando queremos verificar se não houveram mais interações no objeto mockado.
+Só pode ser utilizada pelo objeto mockado.
+```
+verifyNoMoreInteractions(objetoMockado);
+```
+
+#### Teste
 ```
 test('didPush se o nome da rota for nulo', () {
   // arrange -> combinar
@@ -88,4 +130,5 @@ test('didPush se o nome da rota for nulo', () {
 
 ```
 
-Neste primeiro teste, 
+#### Documentação
+[Documentacao Mockito](https://pub.dev/packages/mockito)
