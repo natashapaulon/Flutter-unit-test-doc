@@ -116,7 +116,7 @@ Só pode ser utilizada pelo objeto mockado.
 verifyNoMoreInteractions(objetoMockado);
 ```
 
-#### Teste
+#### Teste 1
 ```
 test('didPush se o nome da rota for nulo', () {
   // arrange -> combinar
@@ -129,6 +129,22 @@ test('didPush se o nome da rota for nulo', () {
 });
 
 ```
+
+#### Teste 2
+```
+test('didPush se o nome da rota não for nulo', () {
+  // arrange -> combinar
+  
+  // act -> açao/agir
+  analyticsRouteObserver.didPush(materialPageRouteNamed, materialPageRouteNamed);
+  
+ // assert -> verificar resultado
+  verify(() => analyticsRouteObserver.didPush(materialPageRouteNamed, materialPageRouteNamed)).called(1);
+});
+```
+
+#### Exemplo completo
+[Teste AnalyticsRouteObserver](https://github.com/natashapaulon/Flutter-unit-test-doc/blob/master/teste.md)
 
 #### Documentação
 [Documentacao Mockito](https://pub.dev/packages/mockito)
